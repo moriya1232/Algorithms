@@ -3,4 +3,4 @@ project(mileStone2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(mileStone2 server_side.cpp server_side.h MySerialServer.cpp MySerialServer.h ClientHandler.cpp ClientHandler.h MyTestClientHandler.cpp MyTestClientHandler.h)
+add_executable(mileStone2 server_side.cpp server_side.h MySerialServer.cpp MySerialServer.h ClientHandler.cpp ClientHandler.h MyTestClientHandler.cpp MyTestClientHandler.h Solver.cpp Solver.h FileCacheManager.cpp FileCacheManager.h CacheManager.cpp CacheManager.h)

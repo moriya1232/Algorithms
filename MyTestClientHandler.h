@@ -6,10 +6,15 @@
 #define MILESTONE2_MYTESTCLIENTHANDLER_H
 
 #include <stdio.h>
+#include <string>
 #include "ClientHandler.h"
+#include "Solver.h"
+using namespace std ;
 
 class MyTestClientHandler:ClientHandler {
-
+    Solver<string, string>* solver ;
+public:
+     void handleClient(std::ifstream input,std::ostream output);
 
 };
 
