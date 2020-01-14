@@ -10,7 +10,7 @@ using namespace std;
 namespace server_side {
      class Server {
      public:
-         virtual void open(int port, ClientHandler c);
+         virtual void open(int port, ClientHandler* c);
          virtual void close();
      };
 };
