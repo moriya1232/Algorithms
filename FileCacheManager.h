@@ -9,11 +9,44 @@
 #include <unordered_map>
 #include "CacheManager.h"
 
-using namespace std ;
-template <typename P, typename S>
+using namespace std;
 
-class FileCacheManager:CacheManager<P,S>{
+template<typename S>
 
+class FileCacheManager : CacheManager<string , S> {
+    unordered_map<std::size_t , S> cache;
+    unordered_map<std::size_t , string> ifExist;
+
+public:
+    void insert(string problem, S solution) {
+
+    }
+
+    S get(string problem) {
+
+        if (cache.find(problem) != cache.end()) {
+            return cache.find(problem);
+        }
+
+
+    }
+
+    bool ifExistSolution(string problem) {
+
+        if(ifExist.find(problem)==ifExist.end()) {
+            return false;
+        }
+        return true;
+    }
+
+    virtual void saveSolution(string problem, S solution) {
+
+    }
+    size_t hashOb(string str) {
+        hash<string> hasher;
+        size_t hash = hasher(str);
+        return hash;
+    };
 };
 
 

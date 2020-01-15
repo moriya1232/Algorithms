@@ -13,8 +13,10 @@ template <typename P, typename S>
 class CacheManager {
     unordered_map <P,S> cache;
 public:
-     void insert (P problem , S solution);
-     S get(P problem) ;
+    virtual void insert (P problem , S solution)=0;
+    virtual S get(P problem)=0;
+    virtual bool ifExistSolution(P problem)=0;
+    virtual void saveSolution(P problem, S solution)=0;
     virtual ~CacheManager(){};
 };
 
