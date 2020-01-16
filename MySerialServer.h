@@ -6,10 +6,15 @@
 #define MILESTONE2_MYSERIALSERVER_H
 
 #include "server_side.h"
+using namespace std ;
 
-class MySerialServer:server_side::Server {
-     void open(int port, ClientHandler c);
-     void close();
+class MySerialServer: public server_side::Server {
+static bool stopRun;
+public:
+    MySerialServer(){this->stopRun = false;}
+     int open(int port, ClientHandler* c);
+     void stop();
+     static int openS(int port , ClientHandler* clientHandler);
 
 };
 

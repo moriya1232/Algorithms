@@ -9,7 +9,8 @@
 #include <stdio.h>
 
 class ClientHandler {
-virtual void handleClient(std::ifstream input,std::ostream output);
+public:
+virtual void handleClient(int sock_fd) = 0;
 };
 
 

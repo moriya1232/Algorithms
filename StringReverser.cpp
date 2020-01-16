@@ -1,0 +1,13 @@
+//
+// Created by yanivmadmon on 1/16/20.
+//
+
+#include "StringReverser.h"
+string StringReverser:: solve(string problem){
+    int len = problem.length();
+    string sol ="";
+   for (int i = len ; i>= 0 ; i--) {
+       sol+= problem.at(i);
+   }
+   return sol;
+}

@@ -9,13 +9,15 @@
 #include <string>
 #include "ClientHandler.h"
 #include "Solver.h"
+#include "CacheManager.h"
+
 using namespace std ;
 
-class MyTestClientHandler:ClientHandler {
+class MyTestClientHandler: public ClientHandler {
     Solver<string, string>* solver ;
+    CacheManager<string,string>* cacheManager;
 public:
-     void handleClient(std::ifstream input,std::ostream output);
-
+     void handleClient(int sock_fd);
 };
 
 
