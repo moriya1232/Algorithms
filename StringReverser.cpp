@@ -5,7 +5,8 @@
 #include "StringReverser.h"
 string StringReverser:: solve(string problem){
     int len = problem.length();
-    string sol ="";
+    string sol;
+    sol = "";
    for (int i = len ; i>= 0 ; i--) {
        sol+= problem.at(i);
    }

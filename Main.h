@@ -21,10 +21,9 @@
 using namespace std;//ds
 
 namespace boot {
-    template<typename S>
-
     class Main {
-        int main(int argc, char* args[]){
+    public:
+        int main(char* args[]){
             MySerialServer *server  =  new MySerialServer();
             ClientHandler *client = new MyTestClientHandler();
             Solver<string, string> *solver = new StringReverser();

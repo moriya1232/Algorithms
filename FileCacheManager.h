@@ -15,8 +15,8 @@ using namespace std;
 template<typename S>
 
 class FileCacheManager : public CacheManager<string , S> {
-    unordered_map<string , S> cache;
-    unordered_map<string , string> ifExist;
+    unordered_map<string , S>* cache;
+    unordered_map<string , string>* ifExist;
     int sizeCache=0;
 
 public:
@@ -26,14 +26,14 @@ public:
         string str = hashString(problem);
         // insert to mapCache
         if(sizeCache==5) {
-            cache.erase(cache.end()-1);
+            cache->erase(cache->end());
             sizeCache--;
         }
-        cache.insert({str, solution});
+        cache->insert({str, solution});
         sizeCache++;
 
         //insert to file cache
-        ifExist.insert({problem, str});
+        ifExist->insert({problem, str});
         str= str+".txt";
         std::ofstream toFile(str, std::ios::binary);
         toFile.write((char *) &solution, sizeof(solution));
@@ -44,12 +44,12 @@ public:
         S solu;
 
         //get from map cache
-        if (cache.find(problem) != cache.end()) {
-            return cache.find(problem);
+        if (cache->find(problem) != cache->end()) {
+            return cache->find(problem);
         }
 
         //get from file cache
-        string solutionName = ifExist.find(problem) + ".txt";
+        string solutionName = ifExist->find(problem).operator->()->second + ".txt";
         std::ifstream f(solutionName, std::ios::binary);
         if (f.fail()) {
             throw ("key not exist in files");
@@ -59,17 +59,17 @@ public:
 
         //update the map cache
         if(sizeCache==5) {
-            cache.erase(cache.end()-1);
+            cache->erase(cache->end()-1);
             sizeCache--;
         }
-        cache.insert({ifExist.find(problem), solu});
+        cache->insert({ifExist->find(problem), solu});
         sizeCache++;
         return solu;
     }
 
     bool ifExistSolution(string problem) {
 
-        if(ifExist.find(problem)==ifExist.end()) {
+        if(ifExist->find(problem)==ifExist->end()) {
             return false;
         }
         return true;

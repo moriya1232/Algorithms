@@ -3,4 +3,9 @@
 //
 
 #include "Main.h"
-//ds
+int main(int argc, char *argv[]) {
+
+    boot::Main mainS;
+    mainS.main(argv);
+    return 0;
+}

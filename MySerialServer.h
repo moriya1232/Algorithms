@@ -9,12 +9,12 @@
 using namespace std ;
 
 class MySerialServer: public server_side::Server {
-static bool stopRun;
 public:
-    MySerialServer(){this->stopRun = false;}
+    //MySerialServer(){this->stopRun = false;}
      int open(int port, ClientHandler* c);
-     void stop();
+    // static void stop();
      static int openS(int port , ClientHandler* clientHandler);
+    void close();
 
 };
 
