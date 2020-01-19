@@ -14,12 +14,13 @@ using namespace std;
 
 template<typename S>
 
-class FileCacheManager : CacheManager<string , S> {
+class FileCacheManager : public CacheManager<string , S> {
     unordered_map<string , S> cache;
     unordered_map<string , string> ifExist;
     int sizeCache=0;
 
 public:
+    FileCacheManager(){cache =  new unordered_map<string , S> ; ifExist = new unordered_map<string , string>; };
     void insert(string problem, S solution) {
 
         string str = hashString(problem);

@@ -18,5 +18,4 @@ public:
 
 };
 
-
 #endif //MILESTONE2_MYSERIALSERVER_H

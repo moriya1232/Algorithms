@@ -15,7 +15,7 @@ int MySerialServer:: open(int port, ClientHandler* c){
     thread newThread(MySerialServer::openS,port,c);
     newThread.detach();
 
-}
+}//ds
 void MySerialServer:: stop(){
     stopRun = true;
 }

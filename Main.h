@@ -18,7 +18,7 @@
 #include "MyTestClientHandler.h"
 
 
-using namespace std;
+using namespace std;//ds
 
 namespace boot {
     template<typename S>
@@ -28,7 +28,7 @@ namespace boot {
             MySerialServer *server  =  new MySerialServer();
             ClientHandler *client = new MyTestClientHandler();
             Solver<string, string> *solver = new StringReverser();
-            CacheManager<string,string> *cache = new FileCacheManager<string,S>;
+            CacheManager<string,string> *cache = new FileCacheManager<string>();
             server->open(atoi(args[0]),client);
         }
     };

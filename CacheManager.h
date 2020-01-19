@@ -4,7 +4,7 @@
 
 #ifndef MILESTONE2_CACHEMANAGER_H
 #define MILESTONE2_CACHEMANAGER_H
-
+//ds
 #include <stdio.h>
 #include <unordered_map>
 using namespace std ;
@@ -16,7 +16,6 @@ public:
     virtual void insert (P problem , S solution) =0;
     virtual S get(P problem)=0 ;
     virtual bool ifExistSolution(P problem)=0;
-    virtual void saveSolution(P problem, S solution)=0;
     virtual ~CacheManager(){};
 };
 
