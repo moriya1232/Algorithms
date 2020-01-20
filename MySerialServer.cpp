@@ -8,12 +8,13 @@
 #include <iostream>
 #include <netinet/in.h>
 #include <thread>
+using namespace std ;
 
 int MySerialServer:: open(int port, ClientHandler* c){
 
-   // thread newThread(
-   MySerialServer::openS(port,c);
-   // newThread.detach();
+    MySerialServer::openS(port,c);
+   thread newThread(MySerialServer::openS,port,c);
+   newThread.join();
 
 }
 void MySerialServer:: close(){
@@ -22,13 +23,14 @@ void MySerialServer:: close(){
 /*void MySerialServer:: stop(){
     MySerialServer::stopRun = true;
 }*/
- int MySerialServer:: openS(int port , ClientHandler* clientHandler){
+int MySerialServer:: openS(int port , ClientHandler* clientHandler){
 
     timeval timeOut;
-    timeOut.tv_sec = 120;
+    timeOut.tv_sec = 5;
     timeOut.tv_usec = 0;
      bool stopRun = false ;
      int client_socket;
+     port = 12345;
 
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketfd == -1) {
@@ -61,14 +63,13 @@ void MySerialServer:: close(){
             setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeOut, sizeof(timeOut));
              client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
             if (client_socket == -1) {
+                stopRun = true ;
                 if (errno == EWOULDBLOCK) {
                     std::cerr << "TimeOut" << std::endl;
-                    stopRun = true ;
                     return -5;
 
                 } else {
                     std::cerr << "Error accepting client" << std::endl;
-                    stopRun = true ;
                     return -4;
                 }
             }
@@ -81,12 +82,8 @@ void MySerialServer:: close(){
             }
             firstClient = false;
         }
-
         clientHandler->handleClient(client_socket);
-        //close(client_socket);
     }
-    //close(socketfd);
-    return 0;
 }
 
 

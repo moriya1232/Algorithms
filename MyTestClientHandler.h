@@ -10,6 +10,7 @@
 #include "ClientHandler.h"
 #include "Solver.h"
 #include "CacheManager.h"
+#include "FileCacheManager.h"
 
 using namespace std ;
 
@@ -17,6 +18,7 @@ class MyTestClientHandler: public ClientHandler {
     Solver<string, string>* solver ;
     CacheManager<string,string>* cacheManager;
 public:
+    MyTestClientHandler(CacheManager<string,string>* cacheManager ,Solver<string, string>* Solver ){this->cacheManager = cacheManager; this->solver =Solver;};
      void handleClient(int sock_fd);
 };//ds
 
