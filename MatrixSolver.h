@@ -13,8 +13,8 @@
 class MatrixSolver : public Solver<vector<string> , string>{
     Searcher<string> *searcher;
 public:
-    MatrixSolver(Searcher<string> *searcher){this->searcher = searcher;};
-    string solve(vector<std::string> matrix);
+    //MatrixSolver(Searcher<string> *searcher){this->searcher = searcher;};
+    string solve(vector<string> matrix);
 };
 
 

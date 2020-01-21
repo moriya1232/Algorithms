@@ -7,19 +7,16 @@
 #include <iostream>
 #include <utility>
 using namespace std;
-//template <typename T>
 class State {
- pair <int,int> point;
+ int i;
+ int j;
  int cost;
-
+ State* father;
 public:
-    pair<int,int> getPoint() {
-        return this->point;
-    }
+    State(int i , int j , int cost){this->i = i ; this->j = j ; this->cost = cost;}
+    int getI(){return i;}
+    int getJ(){return j;}
 
-    int getCost() {
-        return this->cost;
-    };
 };
 
 

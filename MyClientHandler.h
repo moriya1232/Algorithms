@@ -18,7 +18,7 @@ class MyClientHandler : public ClientHandler{//ssd
     Solver<vector<string>,string>* solver ;
     CacheManager<string,string>* cacheManager;
 public:
-    MyClientHandler(CacheManager<string,string>* cacheManager ,Solver<vector<string>, string>* Solver ){this->cacheManager = cacheManager; this->solver = solver;};
+    MyClientHandler(CacheManager<string,string>* cacheManager ,Solver<vector<string>, string>* Solver ){this->cacheManager = cacheManager; this->solver = Solver;};
     void handleClient(int sock_fd);
 };
 

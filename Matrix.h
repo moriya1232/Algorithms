@@ -11,9 +11,10 @@
 
 
 class Matrix : public Searcheable{
-    vector<string>* MatrixString;
-    string enter ;
-    string exit ;
+    vector<vector<State*>>* MatrixStates;
+    int n ;
+    State* enter ;
+    State* exit ;
 public:
     Matrix(vector<string>* matrixString);
     State getInitialState() override;
