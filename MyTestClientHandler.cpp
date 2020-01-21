@@ -34,6 +34,9 @@ void MyTestClientHandler:: handleClient(int client_socket)
                 strcpy(char_array, strSol.c_str());
                 send(client_socket, char_array, strlen(char_array), 0);
             } else {
+                if (!this->cacheManager->ifExistSolution(str)){
+                    throw "Error";
+                }
                 string strSol = solver->solve(str);
                 cacheManager->insert(str,strSol);
                 int n = strSol.length();

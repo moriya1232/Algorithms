@@ -16,6 +16,7 @@
 #include "FileCacheManager.h"
 #include "CacheManager.h"
 #include "MyTestClientHandler.h"
+#include "MyClientHandler.h"
 
 
 using namespace std;//ds
@@ -24,10 +25,10 @@ namespace boot {
     class Main {
     public:
         int main(char* args[]){
-            Solver<string, string> *solver = new StringReverser();
+            Solver<vector<string>, string> *solver ;
             CacheManager<string,string> *cache = new FileCacheManager<string>();
             MySerialServer *server  =  new MySerialServer();
-            ClientHandler *client = new MyTestClientHandler(cache,solver);
+            ClientHandler *client = new MyClientHandler(cache , solver);
             server->open(atoi(args[0]),client);
         }
     };

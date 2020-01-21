@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS -pthread)
 
 
-add_executable(mileStone2 server_side.cpp server_side.h MySerialServer.cpp MySerialServer.h ClientHandler.cpp ClientHandler.h MyTestClientHandler.cpp MyTestClientHandler.h Solver.cpp Solver.h FileCacheManager.cpp FileCacheManager.h CacheManager.cpp CacheManager.h StringReverser.cpp StringReverser.h Main.cpp Main.h Searcher.cpp Searcher.h Searchable.cpp Searchable.h)
+add_executable(mileStone2 server_side.cpp server_side.h MySerialServer.cpp MySerialServer.h ClientHandler.cpp ClientHandler.h MyTestClientHandler.cpp MyTestClientHandler.h Solver.cpp Solver.h FileCacheManager.cpp FileCacheManager.h CacheManager.cpp CacheManager.h StringReverser.cpp StringReverser.h Main.cpp Main.h DFS.cpp DFS.h MyClientHandler.cpp MyClientHandler.h)
