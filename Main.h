@@ -17,6 +17,8 @@
 #include "CacheManager.h"
 #include "MyTestClientHandler.h"
 #include "MyClientHandler.h"
+#include "MatrixSolver.h"
+#include "DFS.h"
 
 
 using namespace std;//ds
@@ -25,7 +27,7 @@ namespace boot {
     class Main {
     public:
         int main(char* args[]){
-            Solver<vector<string>, string> *solver ;
+            MatrixSolver *solver = new MatrixSolver() ;
             CacheManager<string,string> *cache = new FileCacheManager<string>();
             MySerialServer *server  =  new MySerialServer();
             ClientHandler *client = new MyClientHandler(cache , solver);

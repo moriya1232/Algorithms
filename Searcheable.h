@@ -12,11 +12,9 @@ using namespace std;
 
 class Searcheable {
 
-    virtual State getInitialState();
-
-    virtual bool isGoalState(State s);
-
-    virtual vector<State> getAllPosibleStates(State s);
+    virtual State getInitialState() =0;
+    virtual bool isGoalState(State s) =0 ;
+    virtual vector<State> getAllPosibleStates(State s) =0 ;
 };
 
 

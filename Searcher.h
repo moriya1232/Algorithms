@@ -5,9 +5,12 @@
 #ifndef MILESTONE2_SEARCHER_H
 #define MILESTONE2_SEARCHER_H
 
+#include "Searcheable.h"
 
+template <typename S>
 class Searcher {
-    virtual void search();
+public:
+    virtual S search(Searcheable *problem)= 0;
 };
 
 

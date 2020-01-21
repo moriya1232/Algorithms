@@ -36,6 +36,7 @@ void MyClientHandler:: handleClient(int client_socket)
         }
 
         if (line == "end") {
+
             if (cacheManager->ifExistSolution(matrix[0])) {
                 string strSol = cacheManager->get(matrix[0]);
                 int n = strSol.length();
