@@ -20,7 +20,7 @@ public:
         openList->queue->pop();
         return s;
     }
-    string  solution(set<State*>*);
+    string  solution(set<State*>*,Searcheable* problem);
 };
 
 
