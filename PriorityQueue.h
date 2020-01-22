@@ -7,13 +7,16 @@
 
 #include <queue>
 #include "State.h"
+#include <functional>
+
+using namespace std;
 class PriorityQueue {
 
 
 public:
-    priority_queue<State *> *queue;
+    priority_queue <State*, vector<State*>, typename State::myComparator > *queue;
     PriorityQueue() {
-        queue = new priority_queue<State *>();
+        queue = new priority_queue <State*, vector<State*>, typename State::myComparator >();
     }
 
     bool conteint(State *s) {
