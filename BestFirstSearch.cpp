@@ -16,8 +16,8 @@ string BestFirstSearch::search(Searcheable *problem) {
         if (n->equal(problem->getGoalState())) {
             return solution(closed,problem);
         }
-        vector<State *> neighbors = problem->getAllPosibleStates(n);
-        for (State *s:neighbors) {
+        vector<State *>* neighbors = problem->getAllPosibleStates(n);
+        for (State *s:*neighbors) {
             if ((closed->find(s) != closed->end()) && (openList->conteint(s))) {
                 s->setFather(n);
                 s->setCost(n->getCost());
@@ -34,10 +34,10 @@ string BestFirstSearch::search(Searcheable *problem) {
     }
 }
 
-string  solution(set<State*>*,Searcheable* problem) {
+string BestFirstSearch::solution(set<State*>*,Searcheable* problem) {
     string sol="";
     State* s=problem->getGoalState();
-    while(!s==NULL) {
+    while(!(s == NULL)) {
         State* iter=s->getFather();
         if(s->getI()>iter->getI()) {
             string temp="Down (" +s->getCost();

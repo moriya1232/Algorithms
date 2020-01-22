@@ -17,10 +17,9 @@ class Matrix : public Searcheable{
     State* exit ;
 public:
     Matrix(vector<string>* matrixString);
-    State getInitialState() override;
-    bool isGoalState(State s) override ;
-    vector<State> getAllPosibleStates(State s) override ;
-
+    State* getInitialState() override ;
+    State* getGoalState() override  ;
+    vector<State*>* getAllPosibleStates(State* s) override  ;
 };
 
 

@@ -8,6 +8,7 @@
 string MatrixSolver:: solve(vector<string> matrix){
 
     Matrix* matrixProblem = new Matrix(&matrix) ;
-    this->searcher->search(matrixProblem);
+
+    return this->searcher->search(matrixProblem);
 }
 

@@ -14,25 +14,22 @@ class State {
  int value;
  State* father;
 public:
-    State(int i , int j , int cost){this->i = i ; this->j = j ; this->cost = cost;}
+    State(int i , int j , int value){this->i = i ; this->j = j ; this->value = value; this->cost = value;}
     int getI(){return i;}
     int getJ(){return j;}
-bool equal(State* s) {
-    return (s->getI() == this->getI()) && s->getJ() == this->getJ();
-}
-    State* setFather(State* s) {
-        this->father=s;
+    int getValue()const{return value;}
+    int getCost()const{return cost;}
+    bool equal(State* s) {
+        if((s->getI()==this->getI())&&s->getJ()==this->getJ()) {
+            return true;
+        }
+        return false;
     }
+    void setFather(State* s) {this->father=s;}
+    State* getFather() {return this->father;}
     void setCost(int c) {
         cost+=c;
     }
-    int getValue() const {
-        return this->value;
-    }
-    int getCost() const {
-        return this->cost;
-    }
-
     class myComparator
     {
     public:
@@ -41,6 +38,9 @@ bool equal(State* s) {
             return s1->getCost() > s2->getCost();
         }
     };
+
+
+
 };
 
 

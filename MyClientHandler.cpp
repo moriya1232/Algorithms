@@ -18,10 +18,10 @@ void MyClientHandler:: handleClient(int client_socket)
     vector<string> matrix;
     while(true) {
         int valread = read(client_socket, buffer, 1048);
+
         if (valread < 0) {
             perror("ERROR reading from socket");
             break;
-
         }
         line = "";
         for (char c:buffer) {

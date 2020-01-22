@@ -9,7 +9,7 @@
 #include "PriorityQueue.h"
 #include <queue>
 #include <set>
-class BestFirstSearch:Searcher<string> {
+class BestFirstSearch: public Searcher<string> {
 public:
     int countOfNodes=0;
     string search(Searcheable *problem);
