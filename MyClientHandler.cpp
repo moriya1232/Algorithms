@@ -47,11 +47,10 @@ void MyClientHandler:: handleClient(int client_socket)
                 string strSol = solver->solve(matrix);
                 cacheManager->insert(matrix[0], strSol);
                 int n = strSol.length();
-                char char_array[n + 1];
+                char char_array[n + 10];
                 strcpy(char_array, strSol.c_str());
                 send(client_socket, char_array, strlen(char_array), 0);
             }
         }
     }
-
 }

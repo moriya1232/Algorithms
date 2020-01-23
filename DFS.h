@@ -6,8 +6,12 @@
 #define MILESTONE2_DFS_H
 #include "Searcher.h"
 
-template <typename S>
-class DFS:  public Searcher<S> {
+
+class DFS:  public Searcher<string> {
+
+    string search(Searcheable *problem);
+    string solution(Searcheable* problem);
+    int count;
 
 };
 

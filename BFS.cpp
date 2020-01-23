@@ -1,20 +1,20 @@
 //
-// Created by yanivmadmon on 1/20/20.
+// Created by yanivmadmon on 1/23/20.
 //
 
-#include "DFS.h"
+#include "BFS.h"
 #include <vector>
 #include <list>
 
 using namespace std;
 
-string DFS:: search(Searcheable *problem){
+string BFS:: search(Searcheable *problem){
     list<State*>* visitQueue = new list<State*>();
     visitQueue->push_front(problem->getInitialState());
     list<State*>* stackQueue = new list<State*>();
     vector<State*>*  neighbors;
     bool eq = false ;
-    this->count = 0 ;
+    this->count = 0;
     while(true){
         State *n = visitQueue->front();
         neighbors = problem->getAllPosibleStates(n);
@@ -30,15 +30,15 @@ string DFS:: search(Searcheable *problem){
                 }
             }
             if (!eq) {
-                stackQueue->push_front(s);
+                stackQueue->push_back(s);
+                s->setFather(n);
+                s->setCost(n->getCost());
             }
             eq = false;
         }
         this->count++;
         State* next = stackQueue->front();
         visitQueue->push_front(next);
-        next->setFather(n);
-        next->setCost(n->getCost());
         if(next->equal(problem->getGoalState())){
             break;
         }
@@ -46,8 +46,9 @@ string DFS:: search(Searcheable *problem){
     }
 
     return solution(problem);
+
 }
-string DFS::solution(Searcheable* problem) {
+string BFS::solution(Searcheable* problem) {
     string sol="";
     State* s=problem->getGoalState();
     while(!(s->equal(problem->getInitialState()))) {
@@ -76,9 +77,7 @@ string DFS::solution(Searcheable* problem) {
         s=s->getFather();
     }
     string counterNodes = to_string(this->count);
-
     sol.erase(sol.size()-2 , 2);
-
     sol = sol +'\n' + counterNodes;
     return sol;
 }
