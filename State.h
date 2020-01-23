@@ -38,9 +38,6 @@ public:
             return s1->getCost() > s2->getCost();
         }
     };
-
-
-
 };
 
 

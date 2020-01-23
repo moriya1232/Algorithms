@@ -14,7 +14,7 @@
 
 using namespace std ;
 
-class MyClientHandler : public ClientHandler{//ssd
+class MyClientHandler : public ClientHandler{
     Solver<vector<string>,string>* solver ;
     CacheManager<string,string>* cacheManager;
 public:
