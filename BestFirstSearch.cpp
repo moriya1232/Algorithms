@@ -15,7 +15,7 @@ string BestFirstSearch::search(Searcheable *problem) {
         State *n = popFromOpenList(openList);
         closed->insert(n);
         if (n->equal(problem->getGoalState())) {
-            return solution(closed,problem);
+            return solution(problem);
         }
         vector<State *>* neighbors = problem->getAllPosibleStates(n);
         //State* s1;
@@ -38,7 +38,7 @@ string BestFirstSearch::search(Searcheable *problem) {
     }
 }
 
-string BestFirstSearch::solution(set<State*>*,Searcheable* problem) {
+string BestFirstSearch::solution(Searcheable* problem) {
     string sol;
     State* s=problem->getGoalState();
     while(s != problem->getInitialState()) {
