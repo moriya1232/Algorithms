@@ -12,9 +12,10 @@ class State {
  int j;
  int cost;
  int value;
+ int hyoristicCost;
  State* father;
 public:
-    State(int i , int j , int value){this->i = i ; this->j = j ; this->value = value; this->cost = value;}
+    State(int i , int j , int value){this->i = i ; this->j = j ; this->value = value; this->cost = value;this->hyoristicCost=0;}
     int getI(){return i;}
     int getJ(){return j;}
     int getValue()const{return value;}
@@ -30,12 +31,28 @@ public:
     void setCost(int c) {
         cost+=c;
     }
+    int getHyoristic() const {
+        return this->hyoristicCost;
+    }
+
+    void setHyorictic(int h) {
+        this->hyoristicCost=h;
+    };
     class myComparator
     {
     public:
         int operator() (const State* s1, const State* s2)
         {
             return s1->getCost() > s2->getCost();
+        }
+    };
+
+    class AstarComparator
+    {
+    public:
+        int operator() (const State* s1, const State* s2)
+        {
+            return s1->getHyoristic() > s2->getHyoristic();
         }
     };
 };

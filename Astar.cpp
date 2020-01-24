@@ -1,17 +1,16 @@
 //
-// Created by shilo on 22.1.2020.
+// Created by shilo on 24.1.2020.
 //
 
-#include "BestFirstSearch.h"
-#include <vector>
-#include <set>
-#include "PriorityQueue.h"
-string BestFirstSearch::search(Searcheable *problem) {
+#include "Astar.h"
+#include "PriorityQueueAstar.h"
+
+string Astar::search(Searcheable *problem) {
     State* s1;
-    auto *openList = new PriorityQueue();
-    openList->queue->push(problem->getInitialState());
+    auto *openList = new PriorityQueueAstar();
+    openList->queueAstar->push(problem->getInitialState());
     auto *closed = new set<State *>();
-    while (!openList->queue->empty()) {
+    while (!openList->queueAstar->empty()) {
         State *n = popFromOpenList(openList);
         closed->insert(n);
         if (n->equal(problem->getGoalState())) {
@@ -24,13 +23,15 @@ string BestFirstSearch::search(Searcheable *problem) {
             if ((closed->find(s1) == closed->end()) && (!openList->conteint(s1))) {
                 s1->setFather(n);
                 s1->setCost(n->getCost());
-                openList->queue->push(s1);
+                s1->setHyorictic(s1->getHyoristic()+s1->getCost());
+                openList->queueAstar->push(s1);
             }
             else {
                 if(s1->getCost()>n->getCost()+s1->getValue()) {
                     s1->setCost(n->getCost()+s1->getValue());
+                    s1->setHyorictic(s1->getHyoristic()+s1->getCost());
                     openList->popState(s1);
-                    openList->queue->push(s1);
+                    openList->queueAstar->push(s1);
                     s1->setFather(n);
                 }
             }
@@ -38,7 +39,24 @@ string BestFirstSearch::search(Searcheable *problem) {
     }
 }
 
-string BestFirstSearch::solution(Searcheable* problem) {
+int Astar::heuristic(State* s,Searcheable *problem) {
+    int x=0;
+    int y=0;
+    if(problem->getGoalState()->getI()>=s->getI()) {
+         x = problem->getGoalState()->getI() - s->getI();
+    }
+    else {
+         x = s->getI()-problem->getGoalState()->getI();
+    }
+    if(problem->getGoalState()->getJ()>=s->getJ()) {
+         y = problem->getGoalState()->getJ() - s->getJ();
+    }
+    else {
+         y = s->getJ()-problem->getGoalState()->getJ();
+    }
+    return x+y;
+}
+string Astar::solution(Searcheable* problem) {
     string sol;
     State* s=problem->getGoalState();
     while(s != problem->getInitialState()) {

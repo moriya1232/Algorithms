@@ -1,37 +1,33 @@
 //
-// Created by shilo on 22.1.2020.
+// Created by shilo on 24.1.2020.
 //
 
-#ifndef MILESTONE2_PRIORITYQUEUE_H
-#define MILESTONE2_PRIORITYQUEUE_H
+#ifndef MILESTONE2_PRIORITYQUEUEASTAR_H
+#define MILESTONE2_PRIORITYQUEUEASTAR_H
 
-#include <queue>
+
 #include "State.h"
-#include <functional>
+#include <queue>
 
-using namespace std;
-class PriorityQueue {
+#include <functional>
+class PriorityQueueAstar {
 
 public:
-    priority_queue <State*, vector<State*>, typename State::myComparator > *queue;
     priority_queue <State*, vector<State*>, typename State::AstarComparator > *queueAstar;
-    PriorityQueue() {
-        queue = new priority_queue <State*, vector<State*>, typename State::myComparator >();
-    }
-    PriorityQueue(int) {
+    PriorityQueueAstar() {
         queueAstar = new priority_queue <State*, vector<State*>, typename State::AstarComparator >();
     }
 
     bool conteint(State *s) {
 
         vector<State *> tempArr;
-        while (!queue->empty()) {
-            State *current = queue->top();
+        while (!queueAstar->empty()) {
+            State *current = queueAstar->top();
             tempArr.push_back(current);
-            queue->pop();
+            queueAstar->pop();
             if (s->equal(current)) {
                 for (State *s:tempArr) {
-                    queue->push(s);
+                    queueAstar->push(s);
                 }
                 return true;
             }
@@ -39,7 +35,7 @@ public:
         }
         State* s1;
         for (int i=0; i<tempArr.size() ;i++) {
-            queue->push(tempArr[i]);
+            queueAstar->push(tempArr[i]);
         }
         return false;
     }
@@ -47,13 +43,13 @@ public:
     void popState(State *s) {
 
         vector<State *> tempArr;
-        while (!queue->empty()) {
-            State *current = queue->top();
-            queue->pop();
+        while (!queueAstar->empty()) {
+            State *current = queueAstar->top();
+            queueAstar->pop();
             if (s->equal(current)) {
                 if(!tempArr.empty()) {
                     for (State *s:tempArr) {
-                        queue->push(s);
+                        queueAstar->push(s);
                         return;
                     }
                 }
@@ -64,4 +60,4 @@ public:
 };
 
 
-#endif //MILESTONE2_PRIORITYQUEUE_H
+#endif //MILESTONE2_PRIORITYQUEUEASTAR_H

@@ -21,6 +21,7 @@
 #include "DFS.h"
 #include "BestFirstSearch.h"
 #include "BFS.h"
+#include "Astar.h"
 
 
 using namespace std;//ds
@@ -29,7 +30,7 @@ namespace boot {
     class Main {
     public:
         int main(char* args[]){
-            MatrixSolver *solver = new MatrixSolver(new DFS()) ;
+            MatrixSolver *solver = new MatrixSolver(new Astar()) ;
             CacheManager<string,string> *cache = new FileCacheManager<string>();
             MySerialServer *server  =  new MySerialServer();
             ClientHandler *client = new MyClientHandler(cache , solver);
